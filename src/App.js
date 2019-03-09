@@ -48,6 +48,24 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  search = (value = 'Rembrandt') => {
+    const endpoint = 'https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json';
+
+    axios.get(endpoint, {
+      params: {
+        imgonly: true,
+        q: value
+      }
+    })
+    .then(res => {
+      this.setState({
+        results: res.data.artObjects
+      })
+      console.log(res);
+    })
+    .catch(err => console.log(err));
+  }
+
   componentWillMount() {
     const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
     let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
@@ -72,7 +90,9 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Header />
-            <Search />
+            <Search
+              search={this.search}
+            />
             <Route
               exact
               path="/"
