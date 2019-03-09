@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 
 class Search extends Component {
     render() {
-        return(
-            <div>
-                <h1>Hello from Search!</h1>
-            </div>
+        return (
+            <form>
+                <input
+                    type="text"
+                    placeholder="Enter an artist..."
+                    name="search"
+                />
+                <input
+                    type="Submit"
+                    value="Search"
+                />
+            </form>
         )
     }
 }

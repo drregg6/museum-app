@@ -18,9 +18,7 @@ class Results extends Component {
         ));
         return (
             <div className="results">
-                <ul>
-                    {results}
-                </ul>
+                {results}
             </div>
         )
     }

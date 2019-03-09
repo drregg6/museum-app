@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function Header() {
-    return(
+    return (
         <header>
-            <h1>Hello from Header</h1>
+            <h1>Mijksmuseum App</h1>
         </header>
     )
 };

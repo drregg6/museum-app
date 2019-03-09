@@ -52,22 +52,6 @@ class App extends Component {
     const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
     let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
 
-    // axios.get(detailsEndpoint)
-    // .then(res => {
-    //   this.setState({
-    //     details: {
-    //       title: res.data.artObject.title,
-    //       artist: res.data.artObject.principalOrFirstMaker,
-    //       url: res.data.artObject.webImage.url,
-    //       objectNumber: res.data.artObject.objectNumber,
-    //       date: res.data.artObject.dating.sortingDate,
-    //       description: res.data.artObject.plaqueDescription,
-    //       medium: res.data.artObject.materials.join(', ')
-    //     }
-    //   })
-    // })
-    // .catch(err => console.log(err));
-
     axios.get(searchEndpoint, {
       params: {
         type: 'painting',

@@ -13,24 +13,24 @@ class Result extends Component {
         const url = this.props.result.webImage.url;
         const objectNumber = this.props.result.objectNumber;
         return (
-            <li>
-                <h1>{title}</h1>
+            <div className="result">
+                {/* <h1>{title}</h1> */}
                 <Link to="Details">
                     <img
-                        style={imageStyles}
+                        style={imgStyle}
                         src={url}
                         alt={title}
                         onClick={this.props.imgClick.bind(this, objectNumber)}
                     />
                 </Link>
-                <h2>{artist}</h2>
-            </li>
+                {/* <h2>{artist}</h2> */}
+            </div>
         )
     }
 }
 
-const imageStyles = {
-    width: 350,
+const imgStyle = {
+    width: 400,
     height: 'auto'
 }
 
