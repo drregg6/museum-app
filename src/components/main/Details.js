@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-class Main extends Component {
+class Details extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const { url, title, artist } = this.props;
+        const { url, title, artist, medium, date, description } = this.props.details;
 
         return (
-            <div className="main">
+            <div className="details">
                 <h1>{title}</h1>
                 <img
                     style={imageStyles}
@@ -18,6 +19,9 @@ class Main extends Component {
                     alt={title}
                 />
                 <h2>{artist}</h2>
+                <p>Medium: {medium}</p>
+                <p>From: {date}</p>
+                <Link to="/">Home</Link>
             </div>
         )
     }
@@ -28,10 +32,8 @@ const imageStyles = {
     height: 'auto'
 }
 
-Main.propTypes = {
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    artist: PropTypes.string.isRequired
+Details.propTypes = {
+    details: PropTypes.object.isRequired
 }
 
-export default Main;
+export default Details;

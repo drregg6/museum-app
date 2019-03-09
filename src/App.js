@@ -1,78 +1,30 @@
 import React, { Component } from 'react';
-import Main from './components/Main';
-import axios from 'axios';
+import Results from './components/main/Results';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Details from './components/main/Details';
+import Search from './components/main/Search';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 
-/*
-
-API PARAMETER
--------------
-p= the result page (0-n)
-ps= the number of results per page (0-100)
-maker= artist (a-z)
-type= type of artwork (a-z)
-material= material of artwork (a-z)
-f.dating.period= the century which work is made (0-21)
-imgonly= only give results for which an image is available (bool)
-toppieces= only give works that are top pieces (bool)
-
-EXAMPLE
--------
-https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json&type=painting&p=10&imgonly=true
-
-RESPONSE
---------
-res => {
-  res.data.artObjects: [ an arr containing the pieces, p=10 will only contain 10 pieces
-    {
-      links: {
-        ...
-      },
-      id: "asdf"
-      title: "poafssd"
-      objectNumber: "asdjnas"
-      hasImage: bool
-      principalOrFirstMaker: "aldkfnas"
-      longTitle: "aldfkna"
-      webImage: {
-        url: "alsdfnasdl"
-        width: 1248
-        height: 2384
-      }
-    },
-    {
-      links: {
-        ...
-      },
-      id: "sadjfn"
-      title: "aldfn"
-      objectNumber: "asdlkfjna"
-      hasImage: bool
-      principalOrFirstMaker: "aldfn"
-      longTitle: "aldkfn"
-      webImage: {
-        url: "ajdfna"
-        width: 1223i8
-        height: 45239
-      }
-    },
-    ...
-  ]
-}
-
-*/
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: {},
-      title: '',
-      url: '',
-      artist: '',
-      type: ''
+      results: [],
+      details: {
+        title: '',
+        artist: '',
+        url: '',
+        objectNumber: '',
+        date: 0,
+        medium: '',
+        description: ''
+      }
     }
   }
 
@@ -80,15 +32,34 @@ class App extends Component {
     const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
     const key = '?key=Ttl8t7tn&format=json';
     let type = 'collection';
-    let endpoint = `https://www.rijksmuseum.nl/api/en/${type}/SK-C-5${key}`;
-    axios.get(endpoint)
+    let detailsEndpoint = `https://www.rijksmuseum.nl/api/en/${type}/SK-C-5${key}`;
+    let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
+
+    axios.get(detailsEndpoint)
     .then(res => {
       this.setState({
-        data: res.data,
-        title: res.data.artObject.title,
-        artist: res.data.artObject.principalMakers[0].name,
-        url: res.data.artObject.webImage.url,
-        type: res.data.artObject.objectTypes[0]
+        details: {
+          title: res.data.artObject.title,
+          artist: res.data.artObject.principalOrFirstMaker,
+          url: res.data.artObject.webImage.url,
+          objectNumber: res.data.artObject.objectNumber,
+          date: res.data.artObject.dating.sortingDate,
+          description: res.data.artObject.plaqueDescription,
+          medium: res.data.artObject.materials.join(', ')
+        }
+      })
+    })
+    .catch(err => console.log(err));
+
+    axios.get(searchEndpoint, {
+      params: {
+        type: 'painting',
+        imgonly: true
+      }
+    })
+    .then(res => {
+      this.setState({
+        results: res.data.artObjects
       })
     })
     .catch(err => console.log(err));
@@ -96,17 +67,51 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <Main
-            url={this.state.url}
-            title={this.state.title}
-            artist={this.state.artist}
-          />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Search />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <React.Fragment>
+                  <Results
+                    results={this.state.results}
+                  />
+                </React.Fragment>
+              )}
+            />
+            <Route
+              path='/details'
+              render={props => (
+                <React.Fragment>
+                  <Details
+                    details={this.state.details}
+                  />
+                </React.Fragment>
+              )}
+            />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
 
 export default App;
+
+
+/*
+
+search page
+--> response data of 10 paintings
+--> title, image, artist
+details page
+--> click one of the responses
+--> show details (/collections/[image-id])
+--> title, image, artist, medium, date, description
+
+*/

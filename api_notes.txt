@@ -1,0 +1,107 @@
+/*
+
+API PARAMETER SEARCHES
+-----------------------
+p= the result page (0-n)
+ps= the number of results per page (0-100)
+maker= artist (a-z)
+type= type of artwork (a-z)
+material= material of artwork (a-z)
+f.dating.period= the century which work is made (0-21)
+imgonly= only give results for which an image is available (bool)
+toppieces= only give works that are top pieces (bool)
+
+EXAMPLE
+-------
+https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json&type=painting&p=10&imgonly=true
+
+RESPONSE
+--------
+res => {
+  res.data.artObjects: [ an arr containing the pieces, p=10 will only contain 10 pieces
+    {
+      links: {
+        ...
+      },
+      id: "asdf"
+      title: "poafssd"
+      objectNumber: "asdjnas"
+      hasImage: bool
+      principalOrFirstMaker: "aldkfnas"
+      longTitle: "aldfkna"
+      webImage: {
+        url: "alsdfnasdl"
+        width: 1248
+        height: 2384
+      }
+    },
+    {
+      links: {
+        ...
+      },
+      id: "sadjfn"
+      title: "aldfn"
+      objectNumber: "asdlkfjna"
+      hasImage: bool
+      principalOrFirstMaker: "aldfn"
+      longTitle: "aldkfn"
+      webImage: {
+        url: "ajdfna"
+        width: 1223i8
+        height: 45239
+      }
+    },
+    ...
+  ]
+}
+
+API DETAILED RESPONSE
+---------------------
+/collection/[object-number]?key=[api-key]&format=json
+[object-number] is replaced with case-sensitive letters and numbers
+separated with dashes
+
+EXAMPLE
+-------
+https://www.rijksmuseum.nl/api/en/collection/SK-A-954?key=Ttl8t7tn&format=json
+
+RESPONSE
+--------
+res => {
+  res.data.artObject: {
+    title: "long form of the title"
+    objectNumber: "asdl-adsf-23-asdf"
+    webImage: {
+      width: 4582
+      height: 2385
+      url: "alsf"
+    }
+    principalOrFirstMaker: "sakjdfn"
+    description: "asdlfkn" in dutch
+    plaqueDescription: "sadfn"
+    physicalMedium: "asdjfn"
+    objectTypes: [
+      "askdlf"
+    ]
+    principalMakers: [
+      {
+        name: "sakldfn",
+        nationality: "sadlkfn"
+      }
+    ]
+    materials: [
+      "adsklf"
+      "asldfn"
+    ]
+    productionPlaces: [
+      "sadlfn"
+    ]
+    dating: {
+      presentingDate: "c. 1928"
+      period: 12
+      sortingDate: 1928
+    }
+  }
+}
+
+*/
