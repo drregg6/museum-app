@@ -10,7 +10,11 @@ class Results extends Component {
 
     render() {
         const results = this.props.results.map(result => (
-            <Result result={result} />
+            <Result
+                imgClick={this.props.imgClick}
+                key={result.objectNumber}
+                result={result}
+            />
         ));
         return (
             <div className="results">

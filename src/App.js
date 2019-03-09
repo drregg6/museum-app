@@ -28,14 +28,10 @@ class App extends Component {
     }
   }
 
-  componentWillMount() {
-    const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
-    const key = '?key=Ttl8t7tn&format=json';
-    let type = 'collection';
-    let detailsEndpoint = `https://www.rijksmuseum.nl/api/en/${type}/SK-C-5${key}`;
-    let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
+  imgClick = key => {
+    const endpoint = `https://www.rijksmuseum.nl/api/en/collection/${key}?key=Ttl8t7tn&format=json`;
 
-    axios.get(detailsEndpoint)
+    axios.get(endpoint)
     .then(res => {
       this.setState({
         details: {
@@ -47,9 +43,30 @@ class App extends Component {
           description: res.data.artObject.plaqueDescription,
           medium: res.data.artObject.materials.join(', ')
         }
-      })
+      });
     })
     .catch(err => console.log(err));
+  }
+
+  componentWillMount() {
+    const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
+    let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
+
+    // axios.get(detailsEndpoint)
+    // .then(res => {
+    //   this.setState({
+    //     details: {
+    //       title: res.data.artObject.title,
+    //       artist: res.data.artObject.principalOrFirstMaker,
+    //       url: res.data.artObject.webImage.url,
+    //       objectNumber: res.data.artObject.objectNumber,
+    //       date: res.data.artObject.dating.sortingDate,
+    //       description: res.data.artObject.plaqueDescription,
+    //       medium: res.data.artObject.materials.join(', ')
+    //     }
+    //   })
+    // })
+    // .catch(err => console.log(err));
 
     axios.get(searchEndpoint, {
       params: {
@@ -79,6 +96,7 @@ class App extends Component {
                 <React.Fragment>
                   <Results
                     results={this.state.results}
+                    imgClick={this.imgClick}
                   />
                 </React.Fragment>
               )}
