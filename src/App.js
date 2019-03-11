@@ -25,6 +25,11 @@ BUGS
 
 - ADD pagination
 
+- IF no results were found
+    SHOW 404 page
+  ELSE
+    SHOW Results page
+
 */
 
 import React, { Component } from 'react';

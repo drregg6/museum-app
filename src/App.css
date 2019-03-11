@@ -108,8 +108,7 @@ input[type="submit"] {
 
 .details h1,
 .details h2 {
-    margin-right: 10%;
-    margin-left: 10%;
+    margin: 20px 10%;
 }
 
 .details h1 {
