@@ -18,14 +18,53 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    padding: 50px;
+    padding: 78px 0;
+    font-size: 1.3em;
 }
+
+form {
+    width: 70%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+input {
+    font-size: 1.4em;
+}
+
+input[type="text"] {
+    flex: 1 0 auto;
+    padding: 9px 3px;
+    margin-right: 10px;
+
+    outline: none;
+    border: none;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+input[type="text"]:focus {
+    border-bottom: 1px dotted #f00;
+}
+
+input[type="submit"] {
+    flex: 0 0 auto;
+    background: #ccc;
+
+    border: 1px solid #333;
+    border-radius: 2px;
+}
+
+
 
 .container {
     text-align: center;
     margin: 0 auto;
     width: 90%;
 }
+
+
 
 .results {
     margin: 25px;
@@ -36,10 +75,6 @@ header {
     justify-content: space-around;
     align-items: center;
 }
-
-/*.result {
-    margin: 25px auto;
-}*/
 
 .result img {
     margin: 10px auto;
@@ -57,6 +92,8 @@ header {
     opacity: 0.75;
     filter: alpha(opacity=70);
 }
+
+
 
 .details {
     margin: 50px -10%;
@@ -83,7 +120,6 @@ header {
     font-weight: normal;
     font-size: 1.3rem;
     text-align: right;
-    margin: 10px 0;
 }
 
 .description {
@@ -102,17 +138,22 @@ header {
     margin-bottom: 0;
 }
 
-/*.result h1,
-.result h2 {
-    font-size: 100%;
-}*/
+
 
 footer {
     padding: 25px;
 }
 
+
+
 @media screen and (min-width: 960px) {
     .description {
         width: 50%;
+    }
+
+    .details h1,
+    .details h2 {
+        margin-left: 25%;
+        margin-right: 25%;
     }
 }

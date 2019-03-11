@@ -19,6 +19,12 @@ BUGS
 
 - RESULTS display more than 10 results
 
+- ADD checkboxes to search for
+    maker
+    century
+
+- ADD pagination
+
 */
 
 import React, { Component } from 'react';
@@ -84,7 +90,9 @@ class App extends Component {
     axios.get(endpoint, {
       params: {
         imgonly: true,
-        q: value
+        q: value,
+        ps: 20,
+        type: 'painting'
       }
     })
     .then(res => {
@@ -97,20 +105,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const endpoint = `https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json`;
-
-    axios.get(endpoint, {
-      params: {
-        type: 'painting',
-        imgonly: true
-      }
-    })
-    .then(res => {
-      this.setState({
-        results: res.data.artObjects
-      })
-    })
-    .catch(err => console.log(err));
+    this.search();
   }
 
   render() {
