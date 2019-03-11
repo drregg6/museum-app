@@ -9,6 +9,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
+.strong {
+    font-weight: bold;
+}
+
+.italics {
+    font-style: italic;
+}
+
 header {
     padding: 50px;
 }
@@ -50,6 +58,50 @@ header {
     filter: alpha(opacity=70);
 }
 
+.details {
+    margin: 50px -10%;
+}
+
+.details img {
+    width: 100%;
+    height: auto;
+
+    margin: 25px 0;
+}
+
+.details h1,
+.details h2 {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.details h1 {
+    font-size: 1.8rem;
+}
+
+.details h2 {
+    font-weight: normal;
+    font-size: 1.3rem;
+    text-align: right;
+    margin: 10px 0;
+}
+
+.description {
+    border: 5px solid #333;
+    width: 80%;
+    margin: 50px auto;
+    padding: 10px;
+    text-align: left;
+    font-size: 1.05rem;
+    letter-spacing: .04em;
+}
+.description p {
+    margin: 0 0 15px 0;
+}
+.description p:last-child {
+    margin-bottom: 0;
+}
+
 /*.result h1,
 .result h2 {
     font-size: 100%;
@@ -57,4 +109,10 @@ header {
 
 footer {
     padding: 25px;
+}
+
+@media screen and (min-width: 960px) {
+    .description {
+        width: 50%;
+    }
 }

@@ -1,3 +1,26 @@
+/*
+
+BUGS
+----
+
+- SEARCH FORM doesn't work on Details page
+    if search is entered on Details page
+      return home
+      then search
+    else
+      search
+    end
+
+- DETAILS PAGE returns to initial state on refresh
+
+- ONLOAD should not have any information
+    maybe have SEARCH be the only available option
+    large and in charge
+
+- RESULTS display more than 10 results
+
+*/
+
 import React, { Component } from 'react';
 import Results from './components/main/Results';
 import Header from './components/layout/Header';
@@ -33,6 +56,13 @@ class App extends Component {
 
     axios.get(endpoint)
     .then(res => {
+      let descriptionVal = '';
+      if (res.data.artObject.plaqueDescription) {
+        descriptionVal = res.data.artObject.plaqueDescription;
+      } else {
+        descriptionVal = res.data.artObject.plaqueDescriptionEnglish;
+      }
+
       this.setState({
         details: {
           title: res.data.artObject.title,
@@ -40,7 +70,7 @@ class App extends Component {
           url: res.data.artObject.webImage.url,
           objectNumber: res.data.artObject.objectNumber,
           date: res.data.artObject.dating.sortingDate,
-          description: res.data.artObject.plaqueDescription,
+          description: descriptionVal,
           medium: res.data.artObject.materials.join(', ')
         }
       });
@@ -67,10 +97,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const typeKeyFormat = 'collection?key=Ttl8t7tn&format=json'
-    let searchEndpoint = `https://www.rijksmuseum.nl/api/en/${typeKeyFormat}`;
+    const endpoint = `https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json`;
 
-    axios.get(searchEndpoint, {
+    axios.get(endpoint, {
       params: {
         type: 'painting',
         imgonly: true
@@ -124,16 +153,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*
-
-search page
---> response data of 10 paintings
---> title, image, artist
-details page
---> click one of the responses
---> show details (/collections/[image-id])
---> title, image, artist, medium, date, description
-
-*/

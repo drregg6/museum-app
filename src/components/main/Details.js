@@ -12,24 +12,21 @@ class Details extends Component {
 
         return (
             <div className="details">
-                <h1>{title}</h1>
                 <img
-                    style={imageStyles}
                     src={url}
                     alt={title}
                 />
+                <h1>{title}</h1>
                 <h2>{artist}</h2>
-                <p>Medium: {medium}</p>
-                <p>From: {date}</p>
+                <div className="description">
+                    <p className="strong">{date}</p>
+                    <p>{description}</p>
+                    <p className="italics">{medium}</p>
+                </div>
                 <Link to="/">Home</Link>
             </div>
         )
     }
-}
-
-const imageStyles = {
-    width: 350,
-    height: 'auto'
 }
 
 Details.propTypes = {
