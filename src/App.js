@@ -87,35 +87,16 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  search = (state) => {
-    const { value, maker, century } = state
+  search = (val = 'Rembrandt') => {
     const endpoint = 'https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json';
-    let params = {};
 
-    if ((maker && century) || !maker && century) {
-      params = {
-        imgonly: true,
-        q: value,
-        ps: 12,
-        type: 'painting'
-      }
-    } else if (maker && !century) {
-      params = {
-        imgonly: true,
-        maker: value,
-        ps: 12,
-        type: 'painting'
-      }
-    } else {
-      params = {
-        imgonly: true,
-        f.dating.period: value,
-        ps: 12,
-        type: 'painting'
-      }
-    }
+    axios.get(endpoint, {
+      q: val,
+      type: 'painting',
+      imgonly: true,
+      ps: 12
 
-    axios.get(endpoint, params)
+    })
     .then(res => {
       this.setState({
         results: res.data.artObjects
@@ -126,7 +107,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // this.search();
+    // search();
   }
 
   render() {
