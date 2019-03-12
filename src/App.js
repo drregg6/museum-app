@@ -11,22 +11,13 @@ BUGS
       search
     end
 
-- ONLOAD should not have any information
-    maybe have SEARCH be the only available option
-    large and in charge
-
-- RESULTS display more than 10 results
-
+--- on GitHub under construction ---
 - ADD checkboxes to search for
     maker
     century
+--- on GitHub under construction ---
 
 - ADD pagination
-
-- IF no results were found
-    SHOW 404 page
-  ELSE
-    SHOW Results page
 
 */
 
@@ -87,21 +78,21 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  search = (val = 'Rembrandt') => {
+  search = (value = 'Rembrandt') => {
     const endpoint = 'https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json';
 
     axios.get(endpoint, {
-      q: val,
-      type: 'painting',
-      imgonly: true,
-      ps: 12
-
+      params: {
+        q: value,
+        type: 'painting',
+        imgonly: true,
+        ps: 12
+      }
     })
     .then(res => {
       this.setState({
         results: res.data.artObjects
       })
-      console.log(res);
     })
     .catch(err => console.log(err));
   }

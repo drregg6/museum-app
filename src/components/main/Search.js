@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Search extends Component {
@@ -12,7 +13,9 @@ class Search extends Component {
 
     onSubmit = ev => {
         ev.preventDefault();
-        this.props.search(this.state);
+
+        this.props.history.push('/');
+        this.props.search(this.state.value);
         this.setState({
             value: ''
         });
@@ -50,4 +53,4 @@ Search.propTypes = {
     search: PropTypes.func.isRequired
 }
 
-export default Search;
+export default withRouter(Search);

@@ -22,6 +22,14 @@ header {
     font-size: 1.3em;
 }
 
+header a {
+    color: #333;
+    text-decoration: none;
+}
+header a:hover {
+    text-decoration: underline;
+}
+
 form {
     width: 70%;
     margin: 0 auto;
@@ -160,6 +168,10 @@ footer {
 @media screen and (min-width: 960px) {
     .description {
         width: 50%;
+    }
+
+    .details {
+        margin: 50px auto;
     }
 
     .details h1,
