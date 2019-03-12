@@ -6,13 +6,15 @@ class Search extends Component {
         super(props);
 
         this.state = {
-            value: ''
+            value: '',
+            maker: false,
+            century: false
         }
     }
 
     onSubmit = ev => {
         ev.preventDefault();
-        this.props.search(this.state.value);
+        this.props.search(this.state);
         this.setState({
             value: ''
         });
@@ -24,6 +26,15 @@ class Search extends Component {
         })
     }
 
+    centuryChecked = ev => {
+        this.state.century = !this.state.century;
+    }
+    makerChecked = ev => {
+        this.state.maker = !this.state.maker;
+    }
+
+
+
     render() {
         return (
             <form onSubmit={this.onSubmit} >
@@ -34,6 +45,26 @@ class Search extends Component {
                     value={this.state.value}
                     onChange={this.onChange}
                 />
+
+                <formgroup>
+                <input
+                    type="checkbox"
+                    name="search-type"
+                    id="maker"
+                    value="maker"
+                    onChange={this.makerChecked}
+                />
+                <label for="maker">Artist</label>
+                <input
+                    type="checkbox"
+                    name="search-type"
+                    id="century"
+                    value="century"
+                    onChange={this.centuryChecked}
+                />
+                <label for="century">Century</label>
+                </formgroup>
+
                 <input
                     type="submit"
                     value="Search"

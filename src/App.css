@@ -48,6 +48,18 @@ input[type="text"]:focus {
     border-bottom: 1px dotted #f00;
 }
 
+formgroup {
+    flex: 0 0 auto;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+label {
+    margin-right: 10px;
+}
+
 input[type="submit"] {
     flex: 0 0 auto;
     background: #ccc;

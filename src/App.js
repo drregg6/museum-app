@@ -11,8 +11,6 @@ BUGS
       search
     end
 
-- DETAILS PAGE returns to initial state on refresh
-
 - ONLOAD should not have any information
     maybe have SEARCH be the only available option
     large and in charge
@@ -89,17 +87,35 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  search = (value = 'Rembrandt') => {
+  search = (state) => {
+    const { value, maker, century } = state
     const endpoint = 'https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json';
+    let params = {};
 
-    axios.get(endpoint, {
-      params: {
+    if ((maker && century) || !maker && century) {
+      params = {
         imgonly: true,
         q: value,
-        ps: 20,
+        ps: 12,
         type: 'painting'
       }
-    })
+    } else if (maker && !century) {
+      params = {
+        imgonly: true,
+        maker: value,
+        ps: 12,
+        type: 'painting'
+      }
+    } else {
+      params = {
+        imgonly: true,
+        f.dating.period: value,
+        ps: 12,
+        type: 'painting'
+      }
+    }
+
+    axios.get(endpoint, params)
     .then(res => {
       this.setState({
         results: res.data.artObjects
@@ -110,7 +126,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.search();
+    // this.search();
   }
 
   render() {
