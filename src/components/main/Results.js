@@ -8,11 +8,11 @@ class Results extends Component {
     }
 
     render() {
-        let results;
-        if (this.props.results.length === 0) {
+        let results = this.props.getResults(this.props.activePage, this.props.results);
+        if (results.length === 0) {
             results = 'No pieces found';
         } else {
-            results = this.props.results.map(result => (
+            results = results.map(result => (
                 <Result
                     imgClick={this.props.imgClick}
                     key={result.objectNumber}
@@ -33,4 +33,3 @@ Results.propTypes = {
 }
 
 export default Results;
-// this.props.results.map( (result) => ( <Result key={result.id} result={result} /> ));

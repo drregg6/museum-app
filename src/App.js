@@ -3,14 +3,6 @@
 BUGS
 ----
 
-- SEARCH FORM doesn't work on Details page
-    if search is entered on Details page
-      return home
-      then search
-    else
-      search
-    end
-
 --- on GitHub under construction ---
 - ADD checkboxes to search for
     maker
@@ -31,6 +23,7 @@ import Search from './components/main/Search';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import Pagination from 'react-js-pagination';
 
 
 class App extends Component {
@@ -47,8 +40,25 @@ class App extends Component {
         date: 0,
         medium: '',
         description: ''
-      }
+      },
+      activePage: 1
     }
+
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.getResults = this.getResults.bind(this);
+  }
+
+  handlePageChange(pageNum) {
+    console.log(`active page is ${pageNum}`);
+    this.setState({
+      activePage: pageNum
+    });
+  }
+
+  getResults = (page, results) => {
+    return results.filter((result, i) => {
+      return i >= (5 * (page - 1)) && i < (page * 5);
+    })
   }
 
   imgClick = key => {
@@ -86,7 +96,7 @@ class App extends Component {
         q: value,
         type: 'painting',
         imgonly: true,
-        ps: 12
+        ps: 50
       }
     })
     .then(res => {
@@ -118,8 +128,17 @@ class App extends Component {
                   <Results
                     results={this.state.results}
                     imgClick={this.imgClick}
+                    getResults={this.getResults}
+                    activePage={this.state.activePage}
                   />
-                </React.Fragment>
+                  <Pagination
+                    activePage={this.state.activePage}
+                    itemsCountPerPage={5}
+                    totalItemsCount={this.state.results.length}
+                    pageRangeDisplayed={5}
+                    onChange={this.handlePageChange}
+                  />
+                  </React.Fragment>
               )}
             />
             <Route
