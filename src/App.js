@@ -9,7 +9,7 @@ BUGS
     century
 --- on GitHub under construction ---
 
-- ADD pagination
+- STYLE pagination
 
 */
 
@@ -57,7 +57,7 @@ class App extends Component {
 
   getResults = (page, results) => {
     return results.filter((result, i) => {
-      return i >= (5 * (page - 1)) && i < (page * 5);
+      return i >= (10 * (page - 1)) && i < (page * 10);
     })
   }
 
