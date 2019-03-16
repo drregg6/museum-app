@@ -8,10 +8,9 @@ class Result extends Component {
     }
 
     render() {
-        const title = this.props.result.title;
+        const {title, objectNumber} = this.props.result;
         const artist = this.props.result.principalOrFirstMaker;
         const url = this.props.result.webImage.url;
-        const objectNumber = this.props.result.objectNumber;
         return (
             <div className="result">
                 <Link to="Details">
@@ -21,15 +20,11 @@ class Result extends Component {
                         onClick={this.props.imgClick.bind(this, objectNumber)}
                     />
                 </Link>
+                <h2>{artist}</h2>
             </div>
         )
     }
 }
-
-// const imgStyle = {
-//     width: 400,
-//     height: 'auto'
-// }
 
 Result.propTypes = {
     result: PropTypes.object.isRequired,
