@@ -122,8 +122,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Header />
           <div className="container">
-            <Header />
             <Search
               search={this.search}
             />
@@ -158,8 +158,8 @@ class App extends Component {
                 </React.Fragment>
               )}
             />
-            <Footer />
           </div>
+          <Footer />
         </div>
       </Router>
     );

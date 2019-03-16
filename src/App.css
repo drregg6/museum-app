@@ -17,9 +17,21 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
 }
 
+header, footer {
+    text-align: center;
+}
+
 header {
     padding: 78px 0;
     font-size: 1.3em;
+
+    background: yellow;
+    background-image: linear-gradient(yellow, white);
+}
+
+footer {
+    background: yellow;
+    background-image: linear-gradient(white, yellow);
 }
 
 header a {
