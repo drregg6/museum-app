@@ -16,19 +16,7 @@ BUGS
 - THREE columns for masonry?
     100% width on the container?
 
-- ADD default description
-    "A beautiful piece of art!"
-
 - TWO columns for medium sized screens
-
-- ARTIST NAME RULE
-    if artist == anonymous
-      return Anonymous
-    if artist.length > 25
-      split full name into array of words
-      return index[1] to end
-    else
-      return principalOrFirstMaker
 
 */
 

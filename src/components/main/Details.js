@@ -7,15 +7,39 @@ class Details extends Component {
         super(props);
     }
 
+    addDescription = description => {
+        let descriptions = [
+            'A beautiful piece of art!',
+            'Gorgeous! Simply gorgeous!',
+            'Breathtaking colors and such fine detail',
+            'The expressions, the enthusiasm, the beauty!',
+            'The artist really knew what they were doing with this piece',
+            'A stunning display of artistry!',
+            'A hidden gem...',
+            'The techniques, value, color, and artistry are top-notch in this piece'
+        ]
+
+        let randNum = Math.floor(Math.random() * descriptions.length);
+
+        if (description === null) {
+            return descriptions[randNum];
+        } else {
+            return description;
+        }
+    }
+
     render() {
-        const { url, title, artist, medium, date, description } = this.props.details;
+        const { url, title, artist, medium, date } = this.props.details;
+        const description = this.addDescription(this.props.details.description);
 
         return (
             <div className="details">
-                <img
-                    src={url}
-                    alt={title}
-                />
+                <a href={url} target="_blank">
+                    <img
+                        src={url}
+                        alt={title}
+                    />
+                </a>
                 <h1>{title}</h1>
                 <h2>{artist}</h2>
                 <div className="description">

@@ -7,9 +7,20 @@ class Result extends Component {
         super(props);
     }
 
+    artistName = artist => {
+        if (artist === 'anonymous') {
+            return 'Anonymous';
+        } else if (artist.length > 25) {
+            let arr = artist.split(' ');
+            return arr.slice(1).join(' ');
+        } else {
+            return artist;
+        }
+    }
+
     render() {
         const {title, objectNumber} = this.props.result;
-        const artist = this.props.result.principalOrFirstMaker;
+        const artist = this.artistName(this.props.result.principalOrFirstMaker);
         const url = this.props.result.webImage.url;
         return (
             <div className="result">
