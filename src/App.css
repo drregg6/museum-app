@@ -7,6 +7,15 @@
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
+
+    color: #231f20;
+}
+
+a {
+    color: #8e793e;
+}
+a:hover {
+    color: #231f20;
 }
 
 .strong {
@@ -131,6 +140,43 @@ input[type="submit"]:hover {
     display: inline-block;
     padding: 0 6px;
     color: #8e793e;
+}
+
+
+
+.pagination {
+    padding-left: 0;
+    justify-content: center;
+}
+
+.pagination li {
+    font-size: 1.25em;
+    padding: 10px;
+    border: 1px solid #231f20;
+    border-right: none;
+    background: #8e793e;
+
+    pointer-events: none;
+}
+.pagination li:last-child {
+    border-right: 1px solid #231f20;
+}
+.pagination li:nth-child(even) {
+    background: white;
+}
+
+.pagination a {
+    color: #231f20;
+
+    pointer-events: auto;
+}
+
+.pagination li:hover {
+    background: #ad974f;
+}
+
+.pagination li a:hover {
+    text-decoration: none;
 }
 
 
