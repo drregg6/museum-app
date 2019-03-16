@@ -3,13 +3,13 @@
 BUGS
 ----
 
+- re-structure code :)
+
 --- on GitHub under construction ---
 - ADD checkboxes to search for
     maker
     century
 --- on GitHub under construction ---
-
-- STYLE pagination
 
 */
 
@@ -103,7 +103,8 @@ class App extends Component {
     .then(res => {
       this.setState({
         count: res.data.count,
-        results: res.data.artObjects
+        results: res.data.artObjects,
+        activePage: 1
       })
     })
     .catch(err => console.log(err));

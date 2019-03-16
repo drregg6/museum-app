@@ -242,8 +242,12 @@ footer {
         column-gap: 1em;
     }
 
+    .results h3 {
+        position: relative;
+        left: 160%;
+    }
+
     .result { /* mason-brick */
-        display: inline-block;
         margin: 0 0 1em;
         width: 100%;
         height: auto;
