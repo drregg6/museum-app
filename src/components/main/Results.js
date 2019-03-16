@@ -8,20 +8,21 @@ class Results extends Component {
     }
 
     render() {
+        let count = this.props.count;
         let results = this.props.getResults(this.props.activePage, this.props.results);
-        if (results.length === 0) {
-            results = 'No pieces found';
-        } else {
-            results = results.map(result => (
-                <Result
-                    imgClick={this.props.imgClick}
-                    key={result.objectNumber}
-                    result={result}
-                />
-            ));
-        }
+
+        results = results.map(result => (
+            <Result
+                imgClick={this.props.imgClick}
+                key={result.objectNumber}
+                result={result}
+            />
+        ))
+
         return (
             <div className="results">
+                {(count === null) && <h3>Please enter an artist!</h3>}
+                {(count === 0) && <h3>Artist not found...</h3>}
                 {results}
             </div>
         )

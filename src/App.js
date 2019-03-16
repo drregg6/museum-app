@@ -11,13 +11,6 @@ BUGS
 
 - STYLE pagination
 
-- REMOVE no pieces found ON START UP
-
-- THREE columns for masonry?
-    100% width on the container?
-
-- TWO columns for medium sized screens
-
 */
 
 import React, { Component } from 'react';
@@ -38,6 +31,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      count: null,
       results: [],
       details: {
         title: '',
@@ -64,7 +58,7 @@ class App extends Component {
 
   getResults = (page, results) => {
     return results.filter((result, i) => {
-      return i >= (10 * (page - 1)) && i < (page * 10);
+      return i >= (12 * (page - 1)) && i < (page * 12);
     })
   }
 
@@ -108,14 +102,11 @@ class App extends Component {
     })
     .then(res => {
       this.setState({
+        count: res.data.count,
         results: res.data.artObjects
       })
     })
     .catch(err => console.log(err));
-  }
-
-  componentWillMount() {
-    // search();
   }
 
   render() {
@@ -123,7 +114,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <div className="container">
+          <div className="app-container">
             <Search
               search={this.search}
             />
@@ -133,6 +124,7 @@ class App extends Component {
               render={props => (
                 <React.Fragment>
                   <Results
+                    count={this.state.count}
                     results={this.state.results}
                     imgClick={this.imgClick}
                     getResults={this.getResults}

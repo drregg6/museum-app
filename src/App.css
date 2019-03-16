@@ -26,27 +26,29 @@ header {
     font-size: 1.3em;
 
     background: yellow;
-    background-image: linear-gradient(yellow, white);
+    background-image: linear-gradient(#8e793e, white);
 }
 
 footer {
     background: yellow;
-    background-image: linear-gradient(white, yellow);
+    background-image: linear-gradient(white, #8e793e);
 }
 
 header a {
-    color: #333;
+    color: #231f20;
     text-decoration: none;
     display: inline-block;
 }
 header a:hover {
     text-decoration: underline;
-    color: #333;
+    color: #231f20;
 }
+
+
 
 form {
     width: 70%;
-    margin: 0 auto;
+    margin: 25px auto;
 
     display: flex;
     justify-content: space-around;
@@ -61,38 +63,32 @@ input[type="text"] {
     padding: 9px 3px;
     margin-right: 10px;
 
+    color: #231f20;
+
     outline: none;
     border: none;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
 }
 input[type="text"]:focus {
-    border-bottom: 1px dotted #f00;
-}
-
-formgroup {
-    flex: 0 0 auto;
-    margin-right: 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-label {
-    margin-right: 10px;
+    border-bottom: 1px dotted #231f20;
 }
 
 input[type="submit"] {
     flex: 0 0 auto;
-    background: #ccc;
+    background: #fff;
 
-    border: 1px solid #333;
+    color: #231f20;
+    border: 1px solid #231f20;
     border-radius: 2px;
+}
+input[type="submit"]:hover {
+    background: #231f20;
+    color: #fff;
 }
 
 
-
-.container {
+.app-container {
     text-align: center;
     margin: 0 auto;
     width: 90%;
@@ -101,7 +97,7 @@ input[type="submit"] {
 
 
 .results {
-    margin: 25px 0;
+    margin: 12vh 0;
     padding: 0;
 
     display: flex;
@@ -134,7 +130,7 @@ input[type="submit"] {
     background: #fff;
     display: inline-block;
     padding: 0 6px;
-    color: #ad974f;
+    color: #8e793e;
 }
 
 
@@ -166,7 +162,7 @@ input[type="submit"] {
 }
 
 .description {
-    border: 5px solid #333;
+    border: 5px solid #231f20;
     width: 80%;
     margin: 50px auto;
     padding: 10px;
@@ -184,24 +180,14 @@ input[type="submit"] {
 
 
 footer {
-    padding: 25px;
+    padding: 50px;
 }
 
 
 
 @media screen and (min-width: 960px) {
-    .description {
-        width: 50%;
-    }
-
-    .details {
-        margin: 50px auto;
-    }
-
-    .details h1,
-    .details h2 {
-        margin-left: 25%;
-        margin-right: 25%;
+    .app-container {
+        width: 95%;
     }
 
     .results { /* masonry */
@@ -227,5 +213,21 @@ footer {
         font-size: 1.4vw;
         position: relative;
         bottom: 1.5vw;
+    }
+
+
+
+    .details {
+        margin: 50px auto;
+    }
+
+    .details h1,
+    .details h2 {
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+
+    .description {
+        width: 50%;
     }
 }
