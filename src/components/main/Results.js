@@ -30,7 +30,10 @@ class Results extends Component {
 }
 
 Results.propTypes = {
-    results: PropTypes.array.isRequired
+    results: PropTypes.array.isRequired,
+    count: PropTypes.number.isRequired,
+    getResults: PropTypes.func.isRequired,
+    imgClick: PropTypes.func.isRequired
 }
 
 export default Results;

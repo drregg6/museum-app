@@ -205,6 +205,8 @@ input[type="submit"]:hover {
     font-weight: normal;
     font-size: 1.3rem;
     text-align: right;
+
+    cursor: pointer;
 }
 
 .description {

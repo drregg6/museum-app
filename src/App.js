@@ -3,6 +3,9 @@
 BUGS
 ----
 
+- when ARTIST is clicked on Details page
+    search(artist)
+
 - re-structure code :)
 
 --- on GitHub under construction ---
@@ -133,7 +136,7 @@ class App extends Component {
                   />
                   <Pagination
                     activePage={this.state.activePage}
-                    itemsCountPerPage={5}
+                    itemsCountPerPage={12}
                     totalItemsCount={this.state.results.length}
                     pageRangeDisplayed={5}
                     onChange={this.handlePageChange}
