@@ -12,6 +12,11 @@ class Search extends Component {
         }
     }
 
+    renderResults = (artist) => {
+        this.props.history.push('/');
+        this.props.getArtist(artist);
+    }
+
     searchList = search => {
         let searches = [];
         if (this.state.searches.length > 4) {
@@ -30,12 +35,11 @@ class Search extends Component {
     onSubmit = ev => {
         ev.preventDefault();
 
-        this.props.history.push('/');
         if (this.state.value === '') {
             alert("Please enter an artist");
             return;
         } else {
-            this.props.search(this.state.value);
+            this.renderResults(this.state.value);
             this.searchList(this.state.value);
 
             this.setState({
@@ -50,11 +54,24 @@ class Search extends Component {
         })
     }
 
+    capitalize = str => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
 
 
     render() {
+        const searchHistory = this.state.searches.map((search, i) => {
+            let searchWords = search.split(' ');
+            searchWords = searchWords.map(searchWord => this.capitalize(searchWord));
+            searchWords = searchWords.join(' ');
+            return (
+                <span key={i}>| <span style={{cursor: 'pointer'}} onClick={() => {this.renderResults(searchWords)}}>{searchWords}</span> |</span>
+            )
+        })
+
         return (
-            <div>
+            <div className="search">
                 <form onSubmit={this.onSubmit} >
                     <input
                         type="text"
@@ -70,18 +87,7 @@ class Search extends Component {
                     />
                 </form>
                 <p>
-                {
-                    this.state.searches.map((search, i) => {
-                        let searchWords = search.split(' ');
-                        searchWords = searchWords.map(searchWord => {
-                            return searchWord.charAt(0).toUpperCase() + searchWord.slice(1);
-                        });
-                        searchWords = searchWords.join(' ');
-                        return (
-                            <span key={i}>| {searchWords} |</span>
-                        )
-                    })
-                }
+                    {searchHistory}
                 </p>
             </div>
         )
@@ -89,7 +95,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    search: PropTypes.func.isRequired
+    getArtist: PropTypes.func.isRequired
 }
 
 export default withRouter(Search);

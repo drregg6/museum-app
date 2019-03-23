@@ -5,12 +5,10 @@ BUGS
 
 - when ARTIST is clicked on Details page
     search(artist)
+--- pretty much how to send search down to Details
+--- now that it's in its own route
 
---- on GitHub under construction ---
-- ADD checkboxes to search for
-    maker
-    century
---- on GitHub under construction ---
+- lots of ERRORS due to prop-types
 
 */
 
@@ -42,7 +40,6 @@ class App extends Component {
   }
 
   handlePageChange(pageNum) {
-    console.log(`active page is ${pageNum}`);
     this.setState({
       activePage: pageNum
     });
@@ -54,7 +51,7 @@ class App extends Component {
     })
   }
 
-  search = (value = 'Rembrandt') => {
+  getArtist = (value = 'Rembrandt') => {
     const endpoint = 'https://www.rijksmuseum.nl/api/en/collection?key=Ttl8t7tn&format=json';
 
     axios.get(endpoint, {
@@ -82,7 +79,7 @@ class App extends Component {
           <Header />
           <div className="app-container">
             <Search
-              search={this.search}
+              getArtist={this.getArtist}
             />
             <Route
               exact
