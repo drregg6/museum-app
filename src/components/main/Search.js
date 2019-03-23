@@ -66,7 +66,7 @@ class Search extends Component {
             searchWords = searchWords.map(searchWord => this.capitalize(searchWord));
             searchWords = searchWords.join(' ');
             return (
-                <span key={i}>| <span style={{cursor: 'pointer'}} onClick={() => {this.renderResults(searchWords)}}>{searchWords}</span> |</span>
+                <span key={i}>| <span className="search-history" onClick={() => {this.renderResults(searchWords)}}>{searchWords}</span> |</span>
             )
         })
 
