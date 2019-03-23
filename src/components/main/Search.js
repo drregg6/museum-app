@@ -31,12 +31,17 @@ class Search extends Component {
         ev.preventDefault();
 
         this.props.history.push('/');
-        this.props.search(this.state.value);
-        this.searchList(this.state.value);
+        if (this.state.value === '') {
+            alert("Please enter an artist");
+            return;
+        } else {
+            this.props.search(this.state.value);
+            this.searchList(this.state.value);
 
-        this.setState({
-            value: ''
-        });
+            this.setState({
+                value: ''
+            });
+        }
     }
 
     onChange = ev => {
@@ -66,14 +71,14 @@ class Search extends Component {
                 </form>
                 <p>
                 {
-                    this.state.searches.map(search => {
+                    this.state.searches.map((search, i) => {
                         let searchWords = search.split(' ');
                         searchWords = searchWords.map(searchWord => {
                             return searchWord.charAt(0).toUpperCase() + searchWord.slice(1);
                         });
                         searchWords = searchWords.join(' ');
                         return (
-                            <span>| {searchWords} |</span>
+                            <span key={i}>| {searchWords} |</span>
                         )
                     })
                 }

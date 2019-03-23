@@ -6,8 +6,6 @@ BUGS
 - when ARTIST is clicked on Details page
     search(artist)
 
-- re-structure code :)
-
 --- on GitHub under construction ---
 - ADD checkboxes to search for
     maker
@@ -94,7 +92,6 @@ class App extends Component {
                   <Results
                     count={this.state.count}
                     results={this.state.results}
-                    imgClick={this.imgClick}
                     getResults={this.getResults}
                     activePage={this.state.activePage}
                   />
@@ -108,7 +105,10 @@ class App extends Component {
                   </React.Fragment>
               )}
             />
-            <Route path='/details/:image_id' component={Details} />
+            <Route
+              path='/details/:image_id'
+              component={Details}
+            />
           </div>
           <Footer />
         </div>

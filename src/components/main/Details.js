@@ -24,7 +24,6 @@ class Details extends Component {
         let key = this.props.match.params.image_id.toUpperCase();
         axios.get(`https://www.rijksmuseum.nl/api/en/collection/${key}?key=Ttl8t7tn&format=json`)
         .then(res => {
-            console.log(res);
             let descriptionVal = '';
             if (res.data.artObject.plaqueDescription) {
                 descriptionVal = res.data.artObject.plaqueDescription;
