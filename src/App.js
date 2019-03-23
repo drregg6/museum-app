@@ -144,16 +144,7 @@ class App extends Component {
                   </React.Fragment>
               )}
             />
-            <Route
-              path='/details'
-              render={props => (
-                <React.Fragment>
-                  <Details
-                    details={this.state.details}
-                  />
-                </React.Fragment>
-              )}
-            />
+            <Route path='/details/:image_id' component={Details} />
           </div>
           <Footer />
         </div>

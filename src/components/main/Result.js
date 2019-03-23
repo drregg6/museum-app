@@ -24,7 +24,7 @@ class Result extends Component {
         const url = this.props.result.webImage.url;
         return (
             <div className="result">
-                <Link to="Details">
+                <Link to={`details/${objectNumber}`}>
                     <img
                         src={url}
                         alt={title}
