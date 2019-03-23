@@ -36,15 +36,6 @@ class App extends Component {
     this.state = {
       count: null,
       results: [],
-      details: {
-        title: '',
-        artist: '',
-        url: '',
-        objectNumber: '',
-        date: 0,
-        medium: '',
-        description: ''
-      },
       activePage: 1
     }
 
@@ -63,33 +54,6 @@ class App extends Component {
     return results.filter((result, i) => {
       return i >= (12 * (page - 1)) && i < (page * 12);
     })
-  }
-
-  imgClick = key => {
-    const endpoint = `https://www.rijksmuseum.nl/api/en/collection/${key}?key=Ttl8t7tn&format=json`;
-
-    axios.get(endpoint)
-    .then(res => {
-      let descriptionVal = '';
-      if (res.data.artObject.plaqueDescription) {
-        descriptionVal = res.data.artObject.plaqueDescription;
-      } else {
-        descriptionVal = res.data.artObject.plaqueDescriptionEnglish;
-      }
-
-      this.setState({
-        details: {
-          title: res.data.artObject.title,
-          artist: res.data.artObject.principalOrFirstMaker,
-          url: res.data.artObject.webImage.url,
-          objectNumber: res.data.artObject.objectNumber,
-          date: res.data.artObject.dating.sortingDate,
-          description: descriptionVal,
-          medium: res.data.artObject.materials.join(', ')
-        }
-      });
-    })
-    .catch(err => console.log(err));
   }
 
   search = (value = 'Rembrandt') => {

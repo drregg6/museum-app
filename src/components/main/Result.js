@@ -28,7 +28,6 @@ class Result extends Component {
                     <img
                         src={url}
                         alt={title}
-                        onClick={this.props.imgClick.bind(this, objectNumber)}
                     />
                 </Link>
                 <h2>{artist}</h2>
@@ -38,8 +37,7 @@ class Result extends Component {
 }
 
 Result.propTypes = {
-    result: PropTypes.object.isRequired,
-    imgClick: PropTypes.func.isRequired
+    result: PropTypes.object.isRequired
 }
 
 export default Result;

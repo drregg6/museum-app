@@ -13,7 +13,6 @@ class Results extends Component {
 
         results = results.map(result => (
             <Result
-                imgClick={this.props.imgClick}
                 key={result.objectNumber}
                 result={result}
             />
@@ -32,8 +31,7 @@ class Results extends Component {
 Results.propTypes = {
     results: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
-    getResults: PropTypes.func.isRequired,
-    imgClick: PropTypes.func.isRequired
+    getResults: PropTypes.func.isRequired
 }
 
 export default Results;
