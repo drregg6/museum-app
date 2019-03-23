@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class Result extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    artistName = artist => {
+const Result = (props) => {
+    const artistName = artist => {
         if (artist === 'anonymous') {
             return 'Anonymous';
         } else if (artist.length > 25) {
@@ -18,26 +14,21 @@ class Result extends Component {
         }
     }
 
-    render() {
-        const {title, objectNumber} = this.props.result;
-        const artist = this.artistName(this.props.result.principalOrFirstMaker);
-        const url = this.props.result.webImage.url;
-        return (
-            <div className="result">
-                <Link to={`details/${objectNumber}`}>
-                    <img
-                        src={url}
-                        alt={title}
-                    />
-                </Link>
-                <h2>{artist}</h2>
-            </div>
-        )
-    }
-}
+    const {title, objectNumber} = props.result;
+    const artist = artistName(props.result.principalOrFirstMaker);
+    const url = props.result.webImage.url;
 
-Result.propTypes = {
-    result: PropTypes.object.isRequired
+    return (
+        <div className="result">
+            <Link to={`details/${objectNumber}`}>
+                <img
+                    src={url}
+                    alt={title}
+                />
+            </Link>
+            <h2>{artist}</h2>
+        </div>
+    )
 }
 
 export default Result;
