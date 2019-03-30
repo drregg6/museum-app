@@ -19,6 +19,10 @@ import Footer from './components/layout/Footer';
 import Details from './components/main/Details';
 import Search from './components/main/Search';
 
+// redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
@@ -74,42 +78,44 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Header />
-          <div className="app-container">
-            <Search
-              getArtist={this.getArtist}
-            />
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <React.Fragment>
-                  <Results
-                    count={this.state.count}
-                    results={this.state.results}
-                    getResults={this.getResults}
-                    activePage={this.state.activePage}
-                  />
-                  <Pagination
-                    activePage={this.state.activePage}
-                    itemsCountPerPage={12}
-                    totalItemsCount={this.state.results.length}
-                    pageRangeDisplayed={5}
-                    onChange={this.handlePageChange}
-                  />
-                  </React.Fragment>
-              )}
-            />
-            <Route
-              path='/details/:image_id'
-              component={Details}
-            />
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Header />
+            <div className="app-container">
+              <Search
+                getArtist={this.getArtist}
+              />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <React.Fragment>
+                    <Results
+                      count={this.state.count}
+                      results={this.state.results}
+                      getResults={this.getResults}
+                      activePage={this.state.activePage}
+                    />
+                    <Pagination
+                      activePage={this.state.activePage}
+                      itemsCountPerPage={12}
+                      totalItemsCount={this.state.results.length}
+                      pageRangeDisplayed={5}
+                      onChange={this.handlePageChange}
+                    />
+                    </React.Fragment>
+                )}
+              />
+              <Route
+                path='/details/:image_id'
+                component={Details}
+              />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }
