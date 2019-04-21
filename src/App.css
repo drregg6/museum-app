@@ -60,7 +60,7 @@ header a:hover {
 }
 
 form {
-    width: 70%;
+    width: 70vw;
     margin: 25px auto;
 
     display: flex;
