@@ -60,21 +60,21 @@ header a:hover {
 }
 
 form {
-    width: 70vw;
+    width: 50vw;
     margin: 25px auto;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 input {
-    font-size: 1.4em;
+    font-size: 1em;
 }
 
 input[type="text"] {
     flex: 1 0 auto;
     padding: 9px 3px;
-    margin-right: 10px;
+    margin-right: 5px;
 
     color: #231f20;
 
@@ -249,6 +249,18 @@ footer {
 @media screen and (min-width: 960px) {
     .app-container {
         width: 95%;
+    }
+
+    form {
+        width: 70vw;
+    }
+
+    input {
+        font-size: 1.4em;
+    }
+
+    input[type="text"] {
+        margin-right: 10px;
     }
 
     .results { /* masonry */
